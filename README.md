@@ -13,8 +13,8 @@ Below you find instructions for setting it up.
 
 ## Setting up your project environment
 
-1. `git clone` this branch;
-2. Open the cloned folder;
+1. `git clone` this repository;
+2. Open the cloned folder on VS Code;
 3. On the Powershell Terminal, run `uv init --no-pin-python` to start the project with support to python version changes, and to write a first `.toml` file to the folder;
 4. Then run `uv add module1 module2 moduleN;;uv sync` with the list of dependencies needed for your project.
 
@@ -30,15 +30,14 @@ my_project/                 <-- Root workspace
         └── __init__.py
 ```
 
-## Using debugger and profiling tools
-
-For a good debugging experience in Python, you should use `pytest` as a dependency and follow a few conventions:
+## Using debugging and profiling tools
+Aside from the `Run and Debug` functionality on VS Code, `pytest` allows for a better debugging experience on a dedicated tab. Just add it as a dependency and take the following conventions:
 1. Add `pytest` by running `uv add pytest` on the VS Code Terminal;
 2. Save your files with the `test_` prefix, e.g. `test_main.py` to use auto-recognition;
 3. Save the functions you need tested with a `test_` prefix also;
 4. (Optional) Keep all test files within a `tests/` folder for ease of maintainability.
 
-For a straightforward debugger usage on terminal do:
+Now you can use the dedicated tab to run your tests. To use it on terminal, do as follows:
 - Run `uv run pytest --pdb` on the VS Code Terminal to debg;
 
 ### Native `pytest` VS Code support
@@ -60,12 +59,20 @@ VS Code has native support to `pytest`, though:
 
 Note that `scalene` will only profile code that runs for over `1 second` or that uses at least `10 MB`.
 
+Steps for manual run:
 1. Run `uv add scalene`;
 2. Run `uv run scalene run /path/to/test_file.py --profile-all` on your `test_file`.
 
+You can also just run the utilitary script `.\scprof.ps1 \path\to\file` on your Terminal for convenience
+
 ### Using `snakeviz` for profiling (Generally equivalent to `Flamegraph`)
 
-This will create a `.html` file that opens on your browser. Th design isn't great but works fine.
+This will create a `.html` file that opens on your browser. The design isn't great but works fine and with more overall detail than Flamegraph.
+
+#### Automated script
+If you're on Windows, go to the Terminal and run `.\skprof.ps1 \path\to\file`. 
+
+#### Manual Process
 1. Add it to your environment by running `uv add --dev snakeviz` on Terminal;
 2. Generate the profile binary using `cProfile`: `uv run python -m cProfile -o profile.prof /path/to/file.py`;
 3. Launch the UI with `uv run snakeviz profile.prof`.
