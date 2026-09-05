@@ -21,13 +21,18 @@ Below you find instructions for setting it up.
 The final outlook of your folder should be like this:
 ```
 my_project/                 <-- Root workspace
-├── pyproject.toml          <-- Configures the whole project
-├── uv.lock
+├── .vscode
+    └── launch.json         <-- Debugger setup
+    └── settings.json       <-- General configurations
 ├── .venv/
-├── tests/                  <-- Tests sit outside source code
+├── pyproject.toml          <-- Configures the whole project
+├── scprof.ps1              <-- Easy debug with Scalene 
+├── skprof.ps1              <-- Easy debug with Snakeviz 
 └── src/
     └── my_project/         <-- Only importable code lives here
         └── __init__.py
+├── tests/                  <-- Tests sit outside source code
+├── uv.lock                 <-- Virtual environment lock file
 ```
 
 ## Using debugging and profiling tools
